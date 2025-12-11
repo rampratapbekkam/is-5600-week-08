@@ -16,7 +16,7 @@ const productTestHelper = {
         product.price = Math.floor(Math.random() * 100) + 1;
       }
       const createdProduct = await createProduct(product);
-      this.testProductIds.push(createdProduct.id); // Store the created product's ID
+      this.testProductIds.push(createdProduct._id); // Fixed: Use ._id instead of .id
     }
     console.log('Test products loaded successfully');
   },
@@ -29,9 +29,14 @@ const productTestHelper = {
 
     console.log('Cleaning up test orders...');
     for (const orderId of this.testOrderIds) {
-      // Assuming an `orders.destroy` method exists. Otherwise, implement if needed.
-      await destroy(orderId);
+      // Note: Orders don't have a destroy method in the current implementation
+      // If needed, you would need to add it to orders.js
+      // await destroyOrder(orderId);
     }
+
+    // Clear the arrays
+    this.testProductIds = [];
+    this.testOrderIds = [];
 
     console.log('Test products and orders cleaned up successfully');
   },
@@ -57,7 +62,7 @@ const productTestHelper = {
     };
 
     const createdOrder = await createOrder(orderData);
-    this.testOrderIds.push(createdOrder.id); // Store the created order's ID
+    this.testOrderIds.push(createdOrder._id); // Fixed: Use ._id instead of .id
     return createdOrder;
   },
 

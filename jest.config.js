@@ -1,5 +1,5 @@
 module.exports = {
-  // Uncomment this when you begin testing w/in-memory database
-  // preset: '@shelf/jest-mongodb',
+  // Uncommented to enable in-memory MongoDB for orders testing
+  preset: '@shelf/jest-mongodb',
   testEnvironment: 'node',
 };
